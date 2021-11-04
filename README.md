@@ -20,7 +20,7 @@ npm install bloodymonkey/react-native-toggle-element-web
 
 ```jsx
 import React, { useState } from 'react';
-import Toggle from 'react-native-toggle-element-web';
+import Toggle from 'react-native-toggle-element';
 
 const [toggleValue, setToggleValue] = useState(false);
 ```
