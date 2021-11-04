@@ -5,8 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-  ViewPropTypes,
+  View
 } from 'react-native';
 
 // PropsType
@@ -324,11 +323,11 @@ ReactNativeToggleElement.propTypes = {
     PropTypes.string,
     PropTypes.element,
   ]),
-  containerStyle: ViewPropTypes.style,
-  trackBarStyle: ViewPropTypes.style,
-  disabledStyle: ViewPropTypes.style,
+  containerStyle: PropTypes.style,
+  trackBarStyle: PropTypes.style,
+  disabledStyle: PropTypes.style,
   disabledTitleStyle: Text.propType,
-  thumbStyle: ViewPropTypes.style,
+  thumbStyle: PropTypes.style,
   leftTitle: PropTypes.string,
   rightTitle: PropTypes.string,
   animationDuration: PropTypes.number
