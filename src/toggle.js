@@ -77,7 +77,7 @@ ThumbChildren.propTypes = {
   placement: PropTypes.oneOf(['left', 'right']).isRequired,
   children: PropTypes.element,
   disabled: PropTypes.bool,
-  disabledTitleStyle: Text.propTypes.style,
+  disabledTitleStyle: Text.propType,
 };
 
 ThumbChildren.defaultProps = {
@@ -187,6 +187,39 @@ const ReactNativeToggleElement = (props) => {
     return toggleValue ? activeBg : inActiveBg;
   };
 
+  const getTrackBar = (trackBar) => {
+    const { width, height, radius, borderWidth } = trackBar;
+    const borderW = borderWidth ?? 0;
+    const trackBarW = width ?? SIZE_DEFAULT.trackBarWidth;
+    const trackBarH = height ?? SIZE_DEFAULT.trackBarHeight;
+    const borderRadius = radius ?? SIZE_DEFAULT.trackBarRadius;
+  
+    return {
+      width: trackBarW,
+      height: trackBarH,
+      borderRadius,
+      justifyContent: 'center',
+      borderWidth: borderW,
+    };
+  }
+
+  const getThumbButton = (thumbButton, trackBarBorderWidth) => {
+    const borderW = trackBarBorderWidth ?? 0;
+    let { width, height, radius } = thumbButton;
+    const thumbBtnW = width ?? SIZE_DEFAULT.thumbBtnWidth;
+    const thumbBtnH = height ?? SIZE_DEFAULT.thumbBtnHeight;
+    const thumbBtnRadius = radius ?? SIZE_DEFAULT.thumbBtnRadius;
+
+    width = thumbBtnW - borderW * 2;
+    height = thumbBtnH - borderW * 2;
+    radius = thumbBtnRadius - borderW / 4;
+    return {
+      width,
+      height,
+      borderRadius: radius,
+    };
+  }
+
   return (
     <View style={StyleSheet.flatten([styles.container, containerStyle])}>
       <TouchableOpacity
@@ -198,7 +231,7 @@ const ReactNativeToggleElement = (props) => {
         <View
           testID="TrackBar"
           style={StyleSheet.flatten([
-            styles.trackBar(trackBar),
+            getTrackBar(trackBar),
             trackBarBackgroundColor(),
             trackBarStyle,
             disabled && disabledStyle,
@@ -208,7 +241,7 @@ const ReactNativeToggleElement = (props) => {
             style={StyleSheet.flatten([
               styles.thumbPosition,
               styles.thumbLeft,
-              styles.thumbButton(thumbButton, trackBar.borderWidth),
+              getThumbButton(thumbButton, trackBar.borderWidth),
             ])}>
             <ThumbChildren
               toggleValue={toggleValue}
@@ -230,7 +263,7 @@ const ReactNativeToggleElement = (props) => {
                 backgroundColor: thumbButtonBackgroundColor(),
               },
               styles.thumbAnimatedPosition,
-              styles.thumbButton(thumbButton, trackBar.borderWidth),
+              getThumbButton(thumbButton, trackBar.borderWidth),
               thumbStyle,
             ])}>
             {toggleValue ? thumbActiveComponent : thumbInActiveComponent}
@@ -240,7 +273,7 @@ const ReactNativeToggleElement = (props) => {
             style={StyleSheet.flatten([
               styles.thumbPosition,
               styles.thumbRight,
-              styles.thumbButton(thumbButton, trackBar.borderWidth),
+              getThumbButton(thumbButton, trackBar.borderWidth),
             ])}>
             <ThumbChildren
               toggleValue={toggleValue}
@@ -294,7 +327,7 @@ ReactNativeToggleElement.propTypes = {
   containerStyle: ViewPropTypes.style,
   trackBarStyle: ViewPropTypes.style,
   disabledStyle: ViewPropTypes.style,
-  disabledTitleStyle: Text.propTypes.style,
+  disabledTitleStyle: Text.propType,
   thumbStyle: ViewPropTypes.style,
   leftTitle: PropTypes.string,
   rightTitle: PropTypes.string,
@@ -345,21 +378,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  trackBar: (trackBar) => {
-    const { width, height, radius, borderWidth } = trackBar;
-    const borderW = borderWidth ?? 0;
-    const trackBarW = width ?? SIZE_DEFAULT.trackBarWidth;
-    const trackBarH = height ?? SIZE_DEFAULT.trackBarHeight;
-    const borderRadius = radius ?? SIZE_DEFAULT.trackBarRadius;
-
-    return {
-      width: trackBarW,
-      height: trackBarH,
-      borderRadius,
-      justifyContent: 'center',
-      borderWidth: borderW,
-    };
-  },
+  
   thumbPosition: {
     position: 'absolute',
     justifyContent: 'center',
@@ -370,22 +389,6 @@ const styles = StyleSheet.create({
   },
   thumbRight: {
     right: 0,
-  },
-  thumbButton: (thumbButton, trackBarBorderWidth) => {
-    const borderW = trackBarBorderWidth ?? 0;
-    let { width, height, radius } = thumbButton;
-    const thumbBtnW = width ?? SIZE_DEFAULT.thumbBtnWidth;
-    const thumbBtnH = height ?? SIZE_DEFAULT.thumbBtnHeight;
-    const thumbBtnRadius = radius ?? SIZE_DEFAULT.thumbBtnRadius;
-
-    width = thumbBtnW - borderW * 2;
-    height = thumbBtnH - borderW * 2;
-    radius = thumbBtnRadius - borderW / 4;
-    return {
-      width,
-      height,
-      borderRadius: radius,
-    };
   },
   thumbAnimatedPosition: {
     position: 'absolute',
