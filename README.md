@@ -1,4 +1,4 @@
-# React-Native-Toggle-Element [![CircleCI](https://circleci.com/gh/mymai91/react-native-toggle-element.svg?style=svg)](https://circleci.com/gh/mymai91/react-native-toggle-element)
+# React-Native-Toggle-Element-Web [![CircleCI](https://circleci.com/gh/mymai91/react-native-toggle-element.svg?style=svg)](https://circleci.com/gh/mymai91/react-native-toggle-element)
 
 ![ezgif com-video-to-gif (7)](https://user-images.githubusercontent.com/6791942/80718297-8edea800-8b2c-11ea-8f69-c7c3f98ca545.gif)
 
@@ -7,11 +7,11 @@
 ## Installation
 
 ```bash
-yarn add react-native-toggle-element
+yarn add react-native-toggle-element-web
 
 # or with npm
 
-npm install react-native-toggle-element
+npm install react-native-toggle-element-web
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ npm install react-native-toggle-element
 
 ```jsx
 import React, { useState } from 'react';
-import Toggle from 'react-native-toggle-element';
+import Toggle from 'react-native-toggle-element-web';
 
 const [toggleValue, setToggleValue] = useState(false);
 ```
