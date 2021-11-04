@@ -7,11 +7,11 @@
 ## Installation
 
 ```bash
-yarn add react-native-toggle-element-web
+yarn add bloodymonkey/react-native-toggle-element-web
 
 # or with npm
 
-npm install react-native-toggle-element-web
+npm install bloodymonkey/react-native-toggle-element-web
 ```
 
 ## Usage
